@@ -1045,7 +1045,7 @@ This project is published under **Custom Non-Commercial Attribution License** by
 
 - 🌐 [وب‌سایت شخصی](https://mohammadnasser.com)
 - 🐙 [پروفایل گیت‌هاب](https://github.com/nasserhaji)
-- 📧 [ایمیل](mailto:contact@mohammadnasser.com)
+- 📧 [ایمیل](mailto:info@mohammadnasser.com)
 
 ## 🙏 تشکر و قدردانی
 
