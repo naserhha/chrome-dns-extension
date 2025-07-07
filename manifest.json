@@ -1,0 +1,38 @@
+{
+  "manifest_version": 3,
+  "name": "DNS Configuration Manager",
+  "version": "1.2.0",
+  "description": "Chrome DNS management extension - Easy switching between different DNS servers with multilingual support",
+  "author": "Mohammad Nasser Haji Hashemabad",
+  "homepage_url": "https://github.com/nasserhaji/chrome-dns-extension",
+  "permissions": [
+    "proxy",
+    "storage",
+    "alarms"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["locales/*.json", "privacy-policy.html", "privacy-policy-fa.html", "privacy-policy-ar.html", "privacy-policy-zh.html", "terms-of-service.html", "terms-of-service-fa.html", "terms-of-service-ar.html", "terms-of-service-zh.html"],
+      "matches": ["<all_urls>"]
+    }
+  ],
+  "host_permissions": [
+    "http://*/*",
+    "https://*/*"
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "DNS Configuration Manager"
+  },
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "content_security_policy": {
+    "extension_pages": "script-src 'self'; object-src 'self'"
+  }
+} 

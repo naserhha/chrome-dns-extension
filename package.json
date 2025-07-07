@@ -1,0 +1,38 @@
+{
+  "name": "chrome-dns-extension",
+  "version": "1.0.0",
+  "description": "A Chrome extension for managing and switching between different DNS server configurations",
+  "main": "background.js",
+  "scripts": {
+    "build": "echo 'No build process required for Chrome extension'",
+    "test": "echo 'No tests specified'",
+    "lint": "echo 'No linting configured'"
+  },
+  "keywords": [
+    "chrome-extension",
+    "dns",
+    "network",
+    "proxy",
+    "configuration",
+    "browser-extension"
+  ],
+  "author": {
+    "name": "Mohammad Nasser Haji Hashemabad",
+    "email": "contact@mohammadnasser.com",
+    "url": "https://mohammadnasser.com"
+  },
+  "license": "Custom-BY-NC",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/nasserhaji/chrome-dns-extension.git"
+  },
+  "bugs": {
+    "url": "https://github.com/nasserhaji/chrome-dns-extension/issues"
+  },
+  "homepage": "https://github.com/nasserhaji/chrome-dns-extension#readme",
+  "engines": {
+    "node": ">=14.0.0"
+  },
+  "devDependencies": {},
+  "dependencies": {}
+} 

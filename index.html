@@ -1,0 +1,1211 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS Configuration Manager - Chrome Extension</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            color: white;
+            margin-bottom: 40px;
+        }
+
+        .header h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
+
+        .main-content {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            margin-bottom: 30px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .feature-card {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 5px solid #667eea;
+            transition: transform 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .feature-card h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+
+        .dns-presets {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .dns-presets h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .preset-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .preset-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            border: 2px solid #e9ecef;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .preset-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .preset-icon {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .preset-name {
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .preset-servers {
+            color: #666;
+            font-family: monospace;
+            font-size: 0.9rem;
+        }
+
+        .buttons-section {
+            text-align: center;
+            margin: 40px 0;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            margin: 10px;
+            border: none;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: bold;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: linear-gradient(45deg, #667eea, #764ba2);
+            color: white;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+        }
+
+        .btn-secondary {
+            background: #6c757d;
+            color: white;
+        }
+
+        .btn-secondary:hover {
+            background: #5a6268;
+            transform: translateY(-2px);
+        }
+
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+
+        .btn-success:hover {
+            background: #218838;
+            transform: translateY(-2px);
+        }
+
+        .btn-info {
+            background: #17a2b8;
+            color: white;
+        }
+
+        .btn-info:hover {
+            background: #138496;
+            transform: translateY(-2px);
+        }
+
+        .screenshots {
+            margin: 40px 0;
+        }
+
+        .screenshots h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .screenshot-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .screenshot-item {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 15px;
+            text-align: center;
+        }
+
+        .screenshot-item img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .screenshot-item h3 {
+            color: #667eea;
+            margin: 15px 0 10px 0;
+        }
+
+        .screenshot-item p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .installation {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .installation h2 {
+            color: #667eea;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .steps {
+            counter-reset: step-counter;
+        }
+
+        .step {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            border-left: 5px solid #667eea;
+        }
+
+        .step::before {
+            counter-increment: step-counter;
+            content: counter(step-counter);
+            background: #667eea;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 20px;
+        }
+
+        .step-content {
+            flex: 1;
+        }
+
+        .step h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+
+        .step p {
+            color: #666;
+            margin: 0;
+        }
+
+        .footer {
+            background: #333;
+            color: white;
+            text-align: center;
+            padding: 30px;
+            border-radius: 20px;
+        }
+
+        .footer h3 {
+            margin-bottom: 20px;
+            color: #667eea;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin: 20px 0;
+        }
+
+        .footer-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            background: rgba(255,255,255,0.1);
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            background: rgba(255,255,255,0.2);
+            transform: translateY(-2px);
+        }
+
+        .language-support {
+            background: #f8f9fa;
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+        }
+
+        .language-support h2 {
+            color: #667eea;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .languages {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .language-item {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #e9ecef;
+            transition: all 0.3s ease;
+        }
+
+        .language-item:hover {
+            border-color: #667eea;
+            transform: translateY(-2px);
+        }
+
+        .language-flag {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+
+        .language-name {
+            font-weight: bold;
+            color: #333;
+        }
+
+        .language-native {
+            color: #666;
+            font-size: 0.9rem;
+        }
+
+        .alert {
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            border: 1px solid #bee5eb;
+            color: #0c5460;
+        }
+
+        .alert-warning {
+            background: #fff3cd;
+            border: 1px solid #ffeaa7;
+            color: #856404;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .main-content {
+                padding: 20px;
+            }
+            
+            .features-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .preset-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-links {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+
+        .lang-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            margin: 32px 0 24px 0;
+        }
+        .lang-tab {
+            background: rgba(255,255,255,0.7);
+            border: 1.5px solid #667eea;
+            color: #333;
+            border-radius: 16px;
+            padding: 8px 22px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.2s, color 0.2s;
+            outline: none;
+        }
+        .lang-tab.active, .lang-tab:focus {
+            background: linear-gradient(90deg, #667eea 60%, #764ba2 100%);
+            color: #fff;
+            border-color: #667eea;
+        }
+        .lang-content { display: none; }
+        .lang-content.active { display: block; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="lang-tabs">
+            <button class="lang-tab active" data-lang="en">🇺🇸 English</button>
+            <button class="lang-tab" data-lang="fa">🇮🇷 فارسی</button>
+            <button class="lang-tab" data-lang="ar">🇸🇦 العربية</button>
+            <button class="lang-tab" data-lang="zh">🇨🇳 中文</button>
+        </div>
+        <!-- English Content -->
+        <div class="lang-content lang-en active" data-lang="en">
+            <!-- Header -->
+            <div class="header">
+                <h1>🌐 DNS Configuration Manager</h1>
+                <p>Smart DNS management extension for Chrome browser with multilingual support</p>
+            </div>
+
+            <!-- Main Content -->
+            <div class="main-content">
+                <!-- Introduction -->
+                <div class="alert alert-info">
+                    <h3>📋 About This Extension</h3>
+                    <p>DNS Configuration Manager is a powerful Chrome extension that allows you to easily switch between different DNS servers. It provides a user-friendly interface with preset DNS configurations and custom DNS support, all with multilingual capabilities.</p>
+                </div>
+
+                <!-- Features -->
+                <h2 style="color: #667eea; text-align: center; margin: 30px 0;">✨ Key Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🔧 Easy DNS Switching</h3>
+                        <p>Quickly switch between popular DNS servers like Google DNS, Cloudflare, OpenDNS, and Quad9 with just one click.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚙️ Custom DNS Support</h3>
+                        <p>Create and save your own custom DNS configurations with primary and secondary DNS servers.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌍 Multilingual Support</h3>
+                        <p>Fully translated interface in English, Persian (فارسی), Arabic (العربية), and Chinese (中文).</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💾 Persistent Settings</h3>
+                        <p>Your DNS preferences are automatically saved and restored when you reopen the extension.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📋 Quick Copy</h3>
+                        <p>Copy DNS addresses to clipboard for easy use in system network settings.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔍 DNS Testing</h3>
+                        <p>Test DNS connections and verify that your selected DNS servers are working properly.</p>
+                    </div>
+                </div>
+
+                <!-- DNS Presets -->
+                <div class="dns-presets">
+                    <h2>🚀 Available DNS Presets</h2>
+                    <div class="preset-grid">
+                        <div class="preset-item">
+                            <div class="preset-icon">🌐</div>
+                            <div class="preset-name">Google DNS</div>
+                            <div class="preset-servers">8.8.8.8, 8.8.4.4</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">☁️</div>
+                            <div class="preset-name">Cloudflare</div>
+                            <div class="preset-servers">1.1.1.1, 1.0.0.1</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">🔓</div>
+                            <div class="preset-name">Open DNS</div>
+                            <div class="preset-servers">208.67.222.222, 208.67.220.220</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">🛡️</div>
+                            <div class="preset-name">Quad 9</div>
+                            <div class="preset-servers">9.9.9.9, 149.112.112.112</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Language Support -->
+                <div class="language-support">
+                    <h2>🌍 Multilingual Support</h2>
+                    <div class="languages">
+                        <div class="language-item">
+                            <div class="language-flag">🇺🇸</div>
+                            <div class="language-name">English</div>
+                            <div class="language-native">English Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇮🇷</div>
+                            <div class="language-name">فارسی</div>
+                            <div class="language-native">Persian Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇸🇦</div>
+                            <div class="language-name">العربية</div>
+                            <div class="language-native">Arabic Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇨🇳</div>
+                            <div class="language-name">中文</div>
+                            <div class="language-native">Chinese Language</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Installation Instructions -->
+                <div class="installation">
+                    <h2>📥 Installation Guide</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>Download the Extension</h3>
+                                <p>Download the extension files from the GitHub repository or Chrome Web Store.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>Open Chrome Extensions</h3>
+                                <p>Go to chrome://extensions/ in your Chrome browser.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>Enable Developer Mode</h3>
+                                <p>Toggle the "Developer mode" switch in the top right corner.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>Load Extension</h3>
+                                <p>Click "Load unpacked" and select the extension folder.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>Start Using</h3>
+                                <p>Click the extension icon in your toolbar to start managing DNS settings.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Important Notes -->
+                <div class="alert alert-warning">
+                    <h3>⚠️ Important Information</h3>
+                    <p><strong>Simulation Mode:</strong> This extension uses Chrome's proxy API to simulate DNS configuration. For actual system-wide DNS changes, you'll need to configure your system network settings manually. The extension helps you manage and copy DNS addresses for easy system configuration.</p>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="buttons-section">
+                    <a href="https://github.com/nasserhaji/chrome-dns-extension" class="btn btn-primary" target="_blank">
+                        📥 Download from GitHub
+                    </a>
+                    <a href="https://chrome.google.com/webstore" class="btn btn-secondary" target="_blank">
+                        🏪 Chrome Web Store
+                    </a>
+                    <a href="https://mohammadnasser.com" class="btn btn-info" target="_blank">
+                        👨‍💻 About Developer
+                    </a>
+                    <a href="privacy-policy.html" class="btn btn-success" target="_blank">
+                        🔒 Privacy Policy
+                    </a>
+                    <a href="terms-of-service.html" class="btn btn-success" target="_blank">
+                        📋 Terms of Service
+                    </a>
+                    <a href="license.html" class="btn btn-success" target="_blank">
+                        ⚖️ License
+                    </a>
+                    <a href="contributing.html" class="btn btn-success" target="_blank">
+                        🤝 Contributing
+                    </a>
+                    <a href="security.html" class="btn btn-success" target="_blank">
+                        🔒 Security & Privacy
+                    </a>
+                </div>
+
+                <!-- Screenshots Section -->
+                <div class="screenshots">
+                    <h2>📸 Extension Screenshots</h2>
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item">
+                            <img src="screenshots/main-interface.png" alt="Main Interface" onerror="this.style.display='none'">
+                            <h3>Main Interface</h3>
+                            <p>Clean and intuitive user interface with DNS presets and custom options.</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="screenshots/custom-dns.png" alt="Custom DNS" onerror="this.style.display='none'">
+                            <h3>Custom DNS</h3>
+                            <p>Create and manage your own DNS configurations with ease.</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="screenshots/multilingual.png" alt="Multilingual Support" onerror="this.style.display='none'">
+                            <h3>Multilingual Support</h3>
+                            <p>Fully translated interface in multiple languages.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Footer -->
+            <div class="footer">
+                <h3>🔗 Quick Links</h3>
+                <div class="footer-links">
+                    <a href="https://github.com/nasserhaji/chrome-dns-extension" class="footer-link" target="_blank">
+                        🐙 GitHub Repository
+                    </a>
+                    <a href="https://mohammadnasser.com" class="footer-link" target="_blank">
+                        🌐 Developer Website
+                    </a>
+                    <a href="mailto:info@mohammadnasser.com" class="footer-link">
+                        📧 Contact Developer
+                    </a>
+                    <a href="privacy-policy.html" class="footer-link" target="_blank">
+                        🔒 Privacy Policy
+                    </a>
+                    <a href="terms-of-service.html" class="footer-link" target="_blank">
+                        📋 Terms of Service
+                    </a>
+                    <a href="CHANGELOG.md" class="footer-link" target="_blank">
+                        📝 Changelog
+                    </a>
+                    <a href="CONTRIBUTING.md" class="footer-link" target="_blank">
+                        🤝 Contributing
+                    </a>
+                    <a href="LICENSE" class="footer-link" target="_blank">
+                        ⚖️ License
+                    </a>
+                </div>
+                
+                <div style="margin-top: 30px; opacity: 0.8;">
+                    <p><strong>DNS Configuration Manager</strong> - Version 1.2.0</p>
+                    <p>Developed by <a href="https://mohammadnasser.com" style="color: #667eea; text-decoration: none;">Mohammad Nasser Haji Hashemabad</a></p>
+                    <p>© 2025 All rights reserved. Custom License - NonCommercial Attribution</p>
+                </div>
+            </div>
+        </div>
+        <!-- Persian Content -->
+        <div class="lang-content lang-fa" data-lang="fa" dir="rtl" lang="fa">
+            <div class="header">
+                <h1>🌐 مدیر تنظیمات DNS</h1>
+                <p>افزونه مدیریت هوشمند DNS برای مرورگر کروم با پشتیبانی چندزبانه</p>
+            </div>
+            <div class="main-content">
+                <div class="alert alert-info">
+                    <h3>📋 درباره این افزونه</h3>
+                    <p>مدیر تنظیمات DNS یک افزونه قدرتمند برای کروم است که به شما امکان می‌دهد به راحتی بین سرورهای مختلف DNS جابجا شوید. رابط کاربری ساده، تنظیمات آماده و سفارشی، و پشتیبانی کامل از چند زبان را ارائه می‌دهد.</p>
+                </div>
+                <h2 style="color: #667eea; text-align: center; margin: 30px 0;">✨ ویژگی‌های کلیدی</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🔧 تعویض آسان DNS</h3>
+                        <p>سریع بین DNSهای محبوب مانند Google، Cloudflare، OpenDNS و Quad9 تنها با یک کلیک جابجا شوید.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚙️ پشتیبانی از DNS سفارشی</h3>
+                        <p>تنظیمات DNS دلخواه خود را با سرور اصلی و فرعی بسازید و ذخیره کنید.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌍 پشتیبانی چندزبانه</h3>
+                        <p>رابط کاملاً ترجمه‌شده به فارسی، انگلیسی، عربی و چینی.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💾 ذخیره‌سازی پایدار</h3>
+                        <p>تنظیمات DNS شما به طور خودکار ذخیره و هنگام باز کردن مجدد افزونه بازیابی می‌شود.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📋 کپی سریع</h3>
+                        <p>آدرس‌های DNS را برای استفاده آسان در تنظیمات سیستم کپی کنید.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔍 تست DNS</h3>
+                        <p>اتصال DNS را تست و از عملکرد صحیح سرورهای انتخابی مطمئن شوید.</p>
+                    </div>
+                </div>
+                <div class="dns-presets">
+                    <h2>🚀 DNSهای آماده</h2>
+                    <div class="preset-grid">
+                        <div class="preset-item">
+                            <div class="preset-icon">🌐</div>
+                            <div class="preset-name">گوگل DNS</div>
+                            <div class="preset-servers">8.8.8.8, 8.8.4.4</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">☁️</div>
+                            <div class="preset-name">کلودفلر</div>
+                            <div class="preset-servers">1.1.1.1, 1.0.0.1</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">🔓</div>
+                            <div class="preset-name">اوپن DNS</div>
+                            <div class="preset-servers">208.67.222.222, 208.67.220.220</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">🛡️</div>
+                            <div class="preset-name">کُواد ۹</div>
+                            <div class="preset-servers">9.9.9.9, 149.112.112.112</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="language-support">
+                    <h2>🌍 پشتیبانی چندزبانه</h2>
+                    <div class="languages">
+                        <div class="language-item">
+                            <div class="language-flag">🇮🇷</div>
+                            <div class="language-name">فارسی</div>
+                            <div class="language-native">Persian Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇺🇸</div>
+                            <div class="language-name">English</div>
+                            <div class="language-native">English Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇸🇦</div>
+                            <div class="language-name">العربية</div>
+                            <div class="language-native">Arabic Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇨🇳</div>
+                            <div class="language-name">中文</div>
+                            <div class="language-native">Chinese Language</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="installation">
+                    <h2>📥 راهنمای نصب</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>دانلود افزونه</h3>
+                                <p>فایل‌های افزونه را از گیت‌هاب یا Chrome Web Store دانلود کنید.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>باز کردن افزونه‌های کروم</h3>
+                                <p>به chrome://extensions/ در مرورگر کروم بروید.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>فعال‌سازی حالت توسعه‌دهنده</h3>
+                                <p>گزینه "حالت توسعه‌دهنده" را در بالا سمت راست فعال کنید.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>بارگذاری افزونه</h3>
+                                <p>روی "Load unpacked" کلیک و پوشه افزونه را انتخاب کنید.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>شروع استفاده</h3>
+                                <p>روی آیکون افزونه در نوار ابزار کلیک کنید و مدیریت DNS را آغاز کنید.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-warning">
+                    <h3>⚠️ نکته مهم</h3>
+                    <p><strong>حالت شبیه‌سازی:</strong> این افزونه با استفاده از API پروکسی کروم، تنظیمات DNS را شبیه‌سازی می‌کند. برای تغییر واقعی DNS سیستم، باید تنظیمات شبکه سیستم خود را به صورت دستی انجام دهید. افزونه فقط مدیریت و کپی آدرس‌های DNS را آسان می‌کند.</p>
+                </div>
+                <div class="buttons-section">
+                    <a href="https://github.com/nasserhaji/chrome-dns-extension" class="btn btn-primary" target="_blank">📥 دانلود از گیت‌هاب</a>
+                    <a href="https://chrome.google.com/webstore" class="btn btn-secondary" target="_blank">🏪 Chrome Web Store</a>
+                    <a href="https://mohammadnasser.com" class="btn btn-info" target="_blank">👨‍💻 درباره توسعه‌دهنده</a>
+                    <a href="privacy-policy-fa.html" class="btn btn-success" target="_blank">🔒 حریم خصوصی</a>
+                    <a href="terms-of-service-fa.html" class="btn btn-success" target="_blank">📋 شرایط استفاده</a>
+                    <a href="license.html" class="btn btn-success" target="_blank">⚖️ مجوز</a>
+                    <a href="contributing.html" class="btn btn-success" target="_blank">🤝 مشارکت</a>
+                    <a href="security.html" class="btn btn-success" target="_blank">🔒 امنیت و حریم خصوصی</a>
+                </div>
+                <div class="screenshots">
+                    <h2>📸 تصاویر افزونه</h2>
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item">
+                            <img src="screenshots/main-interface.png" alt="رابط اصلی" onerror="this.style.display='none'">
+                            <h3>رابط کاربری اصلی</h3>
+                            <p>رابط کاربری ساده و شهودی با DNSهای آماده و سفارشی.</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="screenshots/custom-dns.png" alt="DNS سفارشی" onerror="this.style.display='none'">
+                            <h3>DNS سفارشی</h3>
+                            <p>به راحتی تنظیمات DNS دلخواه خود را بسازید و مدیریت کنید.</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="screenshots/multilingual.png" alt="پشتیبانی چندزبانه" onerror="this.style.display='none'">
+                            <h3>پشتیبانی چندزبانه</h3>
+                            <p>رابط کاملاً ترجمه‌شده به چند زبان.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <h3>🔗 لینک‌های سریع</h3>
+                <div class="footer-links">
+                    <a href="https://github.com/nasserhaji/chrome-dns-extension" class="footer-link" target="_blank">🐙 مخزن گیت‌هاب</a>
+                    <a href="https://mohammadnasser.com" class="footer-link" target="_blank">🌐 وب‌سایت توسعه‌دهنده</a>
+                    <a href="mailto:info@mohammadnasser.com" class="footer-link">📧 تماس با توسعه‌دهنده</a>
+                    <a href="privacy-policy-fa.html" class="footer-link" target="_blank">🔒 حریم خصوصی</a>
+                    <a href="terms-of-service-fa.html" class="footer-link" target="_blank">📋 شرایط استفاده</a>
+                    <a href="CHANGELOG.md" class="footer-link" target="_blank">📝 تغییرات</a>
+                    <a href="CONTRIBUTING.md" class="footer-link" target="_blank">🤝 مشارکت</a>
+                    <a href="LICENSE" class="footer-link" target="_blank">⚖️ مجوز</a>
+                </div>
+                <div style="margin-top: 30px; opacity: 0.8;">
+                    <p><strong>مدیر تنظیمات DNS</strong> - نسخه 1.2.0</p>
+                    <p>توسعه داده شده توسط <a href="https://mohammadnasser.com" style="color: #667eea; text-decoration: none;">محمد ناصر حاجی هاشم‌آباد</a></p>
+                    <p>© 2025 تمامی حقوق محفوظ است. مجوز سفارشی - فقط غیرتجاری</p>
+                </div>
+            </div>
+        </div>
+        <!-- Arabic Content -->
+        <div class="lang-content lang-ar" data-lang="ar" dir="rtl" lang="ar">
+            <div class="header">
+                <h1>🌐 مدير إعدادات DNS</h1>
+                <p>إضافة إدارة DNS ذكية لمتصفح كروم مع دعم متعدد اللغات</p>
+            </div>
+            <div class="main-content">
+                <div class="alert alert-info">
+                    <h3>📋 حول هذه الإضافة</h3>
+                    <p>مدير إعدادات DNS هو إضافة قوية لكروم تتيح لك التبديل بسهولة بين خوادم DNS المختلفة. توفر واجهة سهلة الاستخدام مع إعدادات DNS جاهزة ومخصصة ودعم كامل للغات متعددة.</p>
+                </div>
+                <h2 style="color: #667eea; text-align: center; margin: 30px 0;">✨ الميزات الرئيسية</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🔧 تبديل DNS بسهولة</h3>
+                        <p>بدّل بسرعة بين خوادم DNS الشهيرة مثل Google وCloudflare وOpenDNS وQuad9 بنقرة واحدة فقط.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚙️ دعم DNS مخصص</h3>
+                        <p>أنشئ إعدادات DNS الخاصة بك مع خادم أساسي وثانوي واحفظها.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌍 دعم متعدد اللغات</h3>
+                        <p>واجهة مترجمة بالكامل إلى العربية، الإنجليزية، الفارسية، والصينية.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💾 إعدادات دائمة</h3>
+                        <p>يتم حفظ تفضيلات DNS تلقائيًا واستعادتها عند إعادة فتح الإضافة.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📋 نسخ سريع</h3>
+                        <p>انسخ عناوين DNS بسهولة لاستخدامها في إعدادات النظام.</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔍 اختبار DNS</h3>
+                        <p>اختبر اتصال DNS وتأكد من أن الخوادم المختارة تعمل بشكل صحيح.</p>
+                    </div>
+                </div>
+                <div class="dns-presets">
+                    <h2>🚀 خوادم DNS الجاهزة</h2>
+                    <div class="preset-grid">
+                        <div class="preset-item">
+                            <div class="preset-icon">🌐</div>
+                            <div class="preset-name">Google DNS</div>
+                            <div class="preset-servers">8.8.8.8, 8.8.4.4</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">☁️</div>
+                            <div class="preset-name">Cloudflare</div>
+                            <div class="preset-servers">1.1.1.1, 1.0.0.1</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">🔓</div>
+                            <div class="preset-name">Open DNS</div>
+                            <div class="preset-servers">208.67.222.222, 208.67.220.220</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">🛡️</div>
+                            <div class="preset-name">Quad 9</div>
+                            <div class="preset-servers">9.9.9.9, 149.112.112.112</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="language-support">
+                    <h2>🌍 دعم متعدد اللغات</h2>
+                    <div class="languages">
+                        <div class="language-item">
+                            <div class="language-flag">🇸🇦</div>
+                            <div class="language-name">العربية</div>
+                            <div class="language-native">Arabic Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇮🇷</div>
+                            <div class="language-name">فارسی</div>
+                            <div class="language-native">Persian Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇺🇸</div>
+                            <div class="language-name">English</div>
+                            <div class="language-native">English Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇨🇳</div>
+                            <div class="language-name">中文</div>
+                            <div class="language-native">Chinese Language</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="installation">
+                    <h2>📥 دليل التثبيت</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>تحميل الإضافة</h3>
+                                <p>قم بتنزيل ملفات الإضافة من GitHub أو Chrome Web Store.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>فتح إضافات كروم</h3>
+                                <p>انتقل إلى chrome://extensions/ في متصفح كروم.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>تفعيل وضع المطور</h3>
+                                <p>قم بتفعيل خيار "وضع المطور" في الزاوية اليمنى العليا.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>تحميل الإضافة</h3>
+                                <p>انقر على "Load unpacked" وحدد مجلد الإضافة.</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>ابدأ الاستخدام</h3>
+                                <p>انقر على أيقونة الإضافة في شريط الأدوات وابدأ إدارة DNS.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-warning">
+                    <h3>⚠️ معلومات هامة</h3>
+                    <p><strong>وضع المحاكاة:</strong> تستخدم هذه الإضافة واجهة برمجة تطبيقات الوكيل في كروم لمحاكاة تكوين DNS. لتغيير DNS على مستوى النظام، يجب عليك ضبط إعدادات الشبكة يدويًا. الإضافة تسهل فقط إدارة ونسخ عناوين DNS.</p>
+                </div>
+                <div class="buttons-section">
+                    <a href="https://github.com/nasserhaji/chrome-dns-extension" class="btn btn-primary" target="_blank">📥 تحميل من GitHub</a>
+                    <a href="https://chrome.google.com/webstore" class="btn btn-secondary" target="_blank">🏪 Chrome Web Store</a>
+                    <a href="https://mohammadnasser.com" class="btn btn-info" target="_blank">👨‍💻 حول المطور</a>
+                    <a href="privacy-policy-ar.html" class="btn btn-success" target="_blank">🔒 سياسة الخصوصية</a>
+                    <a href="terms-of-service-ar.html" class="btn btn-success" target="_blank">📋 شروط الخدمة</a>
+                    <a href="license.html" class="btn btn-success" target="_blank">⚖️ الترخيص</a>
+                    <a href="contributing.html" class="btn btn-success" target="_blank">🤝 المساهمة</a>
+                    <a href="security.html" class="btn btn-success" target="_blank">🔒 الأمان والخصوصية</a>
+                </div>
+                <div class="screenshots">
+                    <h2>📸 لقطات من الإضافة</h2>
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item">
+                            <img src="screenshots/main-interface.png" alt="الواجهة الرئيسية" onerror="this.style.display='none'">
+                            <h3>الواجهة الرئيسية</h3>
+                            <p>واجهة مستخدم بسيطة وواضحة مع DNS جاهز ومخصص.</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="screenshots/custom-dns.png" alt="DNS مخصص" onerror="this.style.display='none'">
+                            <h3>DNS مخصص</h3>
+                            <p>أنشئ وأدر إعدادات DNS الخاصة بك بسهولة.</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="screenshots/multilingual.png" alt="دعم متعدد اللغات" onerror="this.style.display='none'">
+                            <h3>دعم متعدد اللغات</h3>
+                            <p>واجهة مترجمة بالكامل إلى عدة لغات.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <h3>🔗 روابط سريعة</h3>
+                <div class="footer-links">
+                    <a href="https://github.com/nasserhaji/chrome-dns-extension" class="footer-link" target="_blank">🐙 مستودع GitHub</a>
+                    <a href="https://mohammadnasser.com" class="footer-link" target="_blank">🌐 موقع المطور</a>
+                    <a href="mailto:info@mohammadnasser.com" class="footer-link">📧 تواصل مع المطور</a>
+                    <a href="privacy-policy-ar.html" class="footer-link" target="_blank">🔒 سياسة الخصوصية</a>
+                    <a href="terms-of-service-ar.html" class="footer-link" target="_blank">📋 شروط الخدمة</a>
+                    <a href="CHANGELOG.md" class="footer-link" target="_blank">📝 سجل التغييرات</a>
+                    <a href="CONTRIBUTING.md" class="footer-link" target="_blank">🤝 المساهمة</a>
+                    <a href="LICENSE" class="footer-link" target="_blank">⚖️ الترخيص</a>
+                </div>
+                <div style="margin-top: 30px; opacity: 0.8;">
+                    <p><strong>مدير إعدادات DNS</strong> - الإصدار 1.2.0</p>
+                    <p>تم التطوير بواسطة <a href="https://mohammadnasser.com" style="color: #667eea; text-decoration: none;">محمد ناصر حاجي هاشم‌آباد</a></p>
+                    <p>© 2025 جميع الحقوق محفوظة. ترخيص مخصص - غير تجاري فقط</p>
+                </div>
+            </div>
+        </div>
+        <!-- Chinese Content -->
+        <div class="lang-content lang-zh" data-lang="zh" dir="ltr" lang="zh">
+            <div class="header">
+                <h1>🌐 DNS配置管理器</h1>
+                <p>适用于Chrome浏览器的智能DNS管理扩展，支持多语言</p>
+            </div>
+            <div class="main-content">
+                <div class="alert alert-info">
+                    <h3>📋 关于本扩展</h3>
+                    <p>DNS配置管理器是一款强大的Chrome扩展，允许您轻松切换不同的DNS服务器。它提供了用户友好的界面，内置和自定义DNS配置，并支持多语言。</p>
+                </div>
+                <h2 style="color: #667eea; text-align: center; margin: 30px 0;">✨ 主要功能</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <h3>🔧 轻松切换DNS</h3>
+                        <p>一键快速切换Google、Cloudflare、OpenDNS、Quad9等常用DNS服务器。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚙️ 支持自定义DNS</h3>
+                        <p>创建并保存您自己的主/备DNS服务器配置。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌍 多语言支持</h3>
+                        <p>界面已完整翻译为中文、英语、波斯语和阿拉伯语。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>💾 持久设置</h3>
+                        <p>您的DNS偏好会自动保存，并在重新打开扩展时恢复。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📋 快速复制</h3>
+                        <p>一键复制DNS地址，方便在系统网络设置中使用。</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔍 DNS测试</h3>
+                        <p>测试DNS连接，确保所选服务器正常工作。</p>
+                    </div>
+                </div>
+                <div class="dns-presets">
+                    <h2>🚀 可用DNS预设</h2>
+                    <div class="preset-grid">
+                        <div class="preset-item">
+                            <div class="preset-icon">🌐</div>
+                            <div class="preset-name">Google DNS</div>
+                            <div class="preset-servers">8.8.8.8, 8.8.4.4</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">☁️</div>
+                            <div class="preset-name">Cloudflare</div>
+                            <div class="preset-servers">1.1.1.1, 1.0.0.1</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">🔓</div>
+                            <div class="preset-name">Open DNS</div>
+                            <div class="preset-servers">208.67.222.222, 208.67.220.220</div>
+                        </div>
+                        <div class="preset-item">
+                            <div class="preset-icon">🛡️</div>
+                            <div class="preset-name">Quad 9</div>
+                            <div class="preset-servers">9.9.9.9, 149.112.112.112</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="language-support">
+                    <h2>🌍 多语言支持</h2>
+                    <div class="languages">
+                        <div class="language-item">
+                            <div class="language-flag">🇨🇳</div>
+                            <div class="language-name">中文</div>
+                            <div class="language-native">Chinese Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇺🇸</div>
+                            <div class="language-name">English</div>
+                            <div class="language-native">English Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇮🇷</div>
+                            <div class="language-name">فارسی</div>
+                            <div class="language-native">Persian Language</div>
+                        </div>
+                        <div class="language-item">
+                            <div class="language-flag">🇸🇦</div>
+                            <div class="language-name">العربية</div>
+                            <div class="language-native">Arabic Language</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="installation">
+                    <h2>📥 安装指南</h2>
+                    <div class="steps">
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>下载扩展</h3>
+                                <p>从GitHub或Chrome Web Store下载扩展文件。</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>打开Chrome扩展</h3>
+                                <p>在Chrome浏览器中访问chrome://extensions/。</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>启用开发者模式</h3>
+                                <p>在右上角切换"开发者模式"。</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>加载扩展</h3>
+                                <p>点击"Load unpacked"，选择扩展文件夹。</p>
+                            </div>
+                        </div>
+                        <div class="step">
+                            <div class="step-content">
+                                <h3>开始使用</h3>
+                                <p>点击工具栏中的扩展图标，开始管理DNS设置。</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="alert alert-warning">
+                    <h3>⚠️ 重要信息</h3>
+                    <p><strong>模拟模式：</strong>本扩展使用Chrome的代理API模拟DNS配置。要更改系统范围的DNS，需手动配置系统网络设置。扩展仅帮助您管理和复制DNS地址。</p>
+                </div>
+                <div class="buttons-section">
+                    <a href="https://github.com/nasserhaji/chrome-dns-extension" class="btn btn-primary" target="_blank">📥 从GitHub下载</a>
+                    <a href="https://chrome.google.com/webstore" class="btn btn-secondary" target="_blank">🏪 Chrome Web Store</a>
+                    <a href="https://mohammadnasser.com" class="btn btn-info" target="_blank">👨‍💻 关于开发者</a>
+                    <a href="privacy-policy-zh.html" class="btn btn-success" target="_blank">🔒 隐私政策</a>
+                    <a href="terms-of-service-zh.html" class="btn btn-success" target="_blank">📋 服务条款</a>
+                    <a href="license.html" class="btn btn-success" target="_blank">⚖️ 许可证</a>
+                    <a href="contributing.html" class="btn btn-success" target="_blank">🤝 贡献</a>
+                    <a href="security.html" class="btn btn-success" target="_blank">🔒 安全和隐私</a>
+                </div>
+                <div class="screenshots">
+                    <h2>📸 扩展截图</h2>
+                    <div class="screenshot-grid">
+                        <div class="screenshot-item">
+                            <img src="screenshots/main-interface.png" alt="主界面" onerror="this.style.display='none'">
+                            <h3>主界面</h3>
+                            <p>简洁直观的用户界面，支持预设和自定义DNS。</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="screenshots/custom-dns.png" alt="自定义DNS" onerror="this.style.display='none'">
+                            <h3>自定义DNS</h3>
+                            <p>轻松创建和管理您的DNS配置。</p>
+                        </div>
+                        <div class="screenshot-item">
+                            <img src="screenshots/multilingual.png" alt="多语言支持" onerror="this.style.display='none'">
+                            <h3>多语言支持</h3>
+                            <p>界面已完整翻译为多种语言。</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="footer">
+                <h3>🔗 快速链接</h3>
+                <div class="footer-links">
+                    <a href="https://github.com/nasserhaji/chrome-dns-extension" class="footer-link" target="_blank">🐙 GitHub仓库</a>
+                    <a href="https://mohammadnasser.com" class="footer-link" target="_blank">🌐 开发者网站</a>
+                    <a href="mailto:info@mohammadnasser.com" class="footer-link">📧 联系开发者</a>
+                    <a href="privacy-policy-zh.html" class="footer-link" target="_blank">🔒 隐私政策</a>
+                    <a href="terms-of-service-zh.html" class="footer-link" target="_blank">📋 服务条款</a>
+                    <a href="CHANGELOG.md" class="footer-link" target="_blank">📝 更新日志</a>
+                    <a href="CONTRIBUTING.md" class="footer-link" target="_blank">🤝 贡献</a>
+                    <a href="LICENSE" class="footer-link" target="_blank">⚖️ 许可证</a>
+                </div>
+                <div style="margin-top: 30px; opacity: 0.8;">
+                    <p><strong>DNS配置管理器</strong> - 版本 1.2.0</p>
+                    <p>由 <a href="https://mohammadnasser.com" style="color: #667eea; text-decoration: none;">Mohammad Nasser Haji Hashemabad</a> 开发</p>
+                    <p>© 2025 版权所有。自定义许可证 - 仅限非商业用途</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+</html> 

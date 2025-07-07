@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS Extension Test</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            min-height: 100vh;
+        }
+        .container {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #fff;
+        }
+        .test-section {
+            margin: 20px 0;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        .status {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 10px 0;
+        }
+        .success { background: rgba(40, 167, 69, 0.3); }
+        .error { background: rgba(220, 53, 69, 0.3); }
+        .info { background: rgba(23, 162, 184, 0.3); }
+        button {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin: 5px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+        .log {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌐 DNS Extension Test Page</h1>
+        
+        <div class="test-section">
+            <h3>Extension Status</h3>
+            <div id="extensionStatus" class="status info">Checking extension status...</div>
+            <button onclick="checkExtensionStatus()">Check Extension Status</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>DNS Configuration Test</h3>
+            <div id="dnsStatus" class="status info">DNS status will appear here...</div>
+            <button onclick="testDNSConnection()">Test DNS Connection</button>
+            <button onclick="testRealDNS()">Test Real DNS</button>
+        </div>
+        
+        <div class="test-section">
+            <h3>Console Log</h3>
+            <div id="consoleLog" class="log"></div>
+            <button onclick="clearLog()">Clear Log</button>
+        </div>
+    </div>
+
+    <script>
+        // Override console.log to capture logs
+        const originalLog = console.log;
+        const originalError = console.error;
+        const logElement = document.getElementById('consoleLog');
+        
+        console.log = function(...args) {
+            originalLog.apply(console, args);
+            logElement.innerHTML += `<div style="color: #28a745;">[LOG] ${args.join(' ')}</div>`;
+            logElement.scrollTop = logElement.scrollHeight;
+        };
+        
+        console.error = function(...args) {
+            originalError.apply(console, args);
+            logElement.innerHTML += `<div style="color: #dc3545;">[ERROR] ${args.join(' ')}</div>`;
+            logElement.scrollTop = logElement.scrollHeight;
+        };
+
+        function checkExtensionStatus() {
+            const statusElement = document.getElementById('extensionStatus');
+            statusElement.className = 'status info';
+            statusElement.textContent = 'Checking extension status...';
+            
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                chrome.runtime.sendMessage({action: 'getCurrentConfig'}, (response) => {
+                    if (chrome.runtime.lastError) {
+                        statusElement.className = 'status error';
+                        statusElement.textContent = 'Extension not found or not accessible';
+                        console.error('Extension error:', chrome.runtime.lastError);
+                    } else if (response && response.success) {
+                        statusElement.className = 'status success';
+                        statusElement.textContent = `Extension working! Current config: ${response.config ? response.config.name : 'None'}`;
+                        console.log('Extension response:', response);
+                    } else {
+                        statusElement.className = 'status error';
+                        statusElement.textContent = 'Extension responded with error';
+                        console.error('Extension response error:', response);
+                    }
+                });
+            } else {
+                statusElement.className = 'status error';
+                statusElement.textContent = 'Chrome extension API not available';
+            }
+        }
+
+        function testDNSConnection() {
+            const statusElement = document.getElementById('dnsStatus');
+            statusElement.className = 'status info';
+            statusElement.textContent = 'Testing DNS connection...';
+            
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                chrome.runtime.sendMessage({
+                    action: 'testDNS',
+                    dnsServer: '8.8.8.8'
+                }, (response) => {
+                    if (chrome.runtime.lastError) {
+                        statusElement.className = 'status error';
+                        statusElement.textContent = 'DNS test failed: Extension error';
+                        console.error('DNS test error:', chrome.runtime.lastError);
+                    } else if (response && response.success) {
+                        statusElement.className = 'status success';
+                        statusElement.textContent = 'DNS connection test successful!';
+                        console.log('DNS test successful');
+                    } else {
+                        statusElement.className = 'status error';
+                        statusElement.textContent = 'DNS connection test failed';
+                        console.error('DNS test failed:', response);
+                    }
+                });
+            } else {
+                statusElement.className = 'status error';
+                statusElement.textContent = 'Chrome extension API not available';
+            }
+        }
+
+        function testRealDNS() {
+            const statusElement = document.getElementById('dnsStatus');
+            statusElement.className = 'status info';
+            statusElement.textContent = 'Testing real DNS connection...';
+            
+            if (typeof chrome !== 'undefined' && chrome.runtime) {
+                chrome.runtime.sendMessage({
+                    action: 'testRealDNS'
+                }, (response) => {
+                    if (chrome.runtime.lastError) {
+                        statusElement.className = 'status error';
+                        statusElement.textContent = 'Real DNS test failed: Extension error';
+                        console.error('Real DNS test error:', chrome.runtime.lastError);
+                    } else if (response && response.success) {
+                        statusElement.className = 'status success';
+                        statusElement.textContent = 'Real DNS connection test successful!';
+                        console.log('Real DNS test successful');
+                    } else {
+                        statusElement.className = 'status error';
+                        statusElement.textContent = 'Real DNS connection test failed';
+                        console.error('Real DNS test failed:', response);
+                    }
+                });
+            } else {
+                statusElement.className = 'status error';
+                statusElement.textContent = 'Chrome extension API not available';
+            }
+        }
+
+        function clearLog() {
+            document.getElementById('consoleLog').innerHTML = '';
+        }
+
+        // Auto-check extension status on page load
+        window.addEventListener('load', () => {
+            setTimeout(checkExtensionStatus, 1000);
+        });
+    </script>
+</body>
+</html> 

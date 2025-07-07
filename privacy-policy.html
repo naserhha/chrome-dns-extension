@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - DNS Configuration Manager</title>
+    <script>
+        // Language detection and redirection
+        function detectLanguage() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const lang = urlParams.get('lang');
+            
+            if (lang) {
+                switch(lang) {
+                    case 'fa':
+                        window.location.href = 'privacy-policy-fa.html';
+                        break;
+                    case 'ar':
+                        window.location.href = 'privacy-policy-ar.html';
+                        break;
+                    case 'zh':
+                        window.location.href = 'privacy-policy-zh.html';
+                        break;
+                    default:
+                        // Stay on English version
+                        break;
+                }
+            }
+        }
+        
+        // Run language detection on page load
+        window.addEventListener('load', detectLanguage);
+    </script>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Inter', 'Segoe UI', 'Tahoma', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            font-size: 1.5rem;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .contact {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .contact h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .contact a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .language-links a {
+            transition: all 0.3s ease;
+        }
+        
+        .language-links a:hover {
+            background: #667eea !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .language-links div {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="header">
+                <h1>🔒 Privacy Policy</h1>
+                <div class="subtitle">DNS Configuration Manager Extension</div>
+            </div>
+            
+            <div class="section">
+                <h2>📋 Overview</h2>
+                <p>This Privacy Policy describes how the DNS Configuration Manager Chrome extension ("we", "our", or "us") handles your information. We are committed to protecting your privacy and ensuring transparency in our data practices.</p>
+            </div>
+            
+            <div class="highlight">
+                <h3>🛡️ Key Privacy Principles</h3>
+                <p><strong>This extension does not collect, store, or transmit any user data.</strong> All operations occur locally in your browser. We believe in complete transparency and minimal data collection.</p>
+            </div>
+            
+            <div class="section">
+                <h2>📊 Data Collection</h2>
+                <p><strong>We collect NO personal information.</strong> Our extension operates entirely within your browser and does not:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Collect any personal data</li>
+                    <li>Store information on external servers</li>
+                    <li>Track your browsing activity</li>
+                    <li>Send data to third-party services</li>
+                    <li>Use analytics or tracking tools</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>💾 Local Storage</h2>
+                <p>The only data stored is your DNS configuration preferences, which are saved locally in your browser using Chrome's storage API. This includes:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Your custom DNS server settings</li>
+                    <li>Language preferences</li>
+                    <li>Extension state (enabled/disabled)</li>
+                </ul>
+                <p>This data remains on your device and is never transmitted to external servers.</p>
+            </div>
+            
+            <div class="section">
+                <h2>🌐 Network Communication</h2>
+                <p><strong>No external network requests:</strong> Our extension does not make any API calls, fetch requests, or communicate with external servers. All functionality operates locally within your browser.</p>
+            </div>
+            
+            <div class="section">
+                <h2>🔐 Permissions</h2>
+                <p>Our extension requires minimal permissions:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li><strong>proxy:</strong> To configure DNS settings</li>
+                    <li><strong>storage:</strong> To save your preferences locally</li>
+                    <li><strong>http://*/* and https://*/*:</strong> To access websites (standard for DNS functionality)</li>
+                </ul>
+                <p>We do not request unnecessary permissions like access to tabs, bookmarks, or browsing history.</p>
+            </div>
+            
+            <div class="section">
+                <h2>🔍 Code Transparency</h2>
+                <p>Our extension code is:</p>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Fully readable and not minified</li>
+                    <li>Open source and transparent</li>
+                    <li>Free from obfuscation or encryption</li>
+                    <li>Available for public review</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>🔄 Updates</h2>
+                <p>This Privacy Policy may be updated occasionally. Any significant changes will be communicated through the extension's update process. Continued use of the extension after changes constitutes acceptance of the updated policy.</p>
+            </div>
+            
+            <div class="contact">
+                <h3>📧 Contact Information</h3>
+                <p>If you have any questions about this Privacy Policy or our data practices, please contact us:</p>
+                <p><strong>Developer:</strong> Mohammad Nasser Haji Hashemabad</p>
+                <p><strong>Website:</strong> <a href="https://mohammadnasser.com" target="_blank">https://mohammadnasser.com</a></p>
+                <p><strong>Email:</strong> <a href="mailto:info@mohammadnasser.com">info@mohammadnasser.com</a></p>
+            </div>
+            
+            <div class="language-links" style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 12px;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">🌐 View in other languages</h3>
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <a href="privacy-policy.html" style="color: #667eea; text-decoration: none; padding: 8px 16px; border: 1px solid #667eea; border-radius: 8px; font-weight: 500; background: white;">🇺🇸 English</a>
+                    <a href="privacy-policy-fa.html" style="color: #667eea; text-decoration: none; padding: 8px 16px; border: 1px solid #667eea; border-radius: 8px; font-weight: 500;">🇮🇷 فارسی</a>
+                    <a href="privacy-policy-ar.html" style="color: #667eea; text-decoration: none; padding: 8px 16px; border: 1px solid #667eea; border-radius: 8px; font-weight: 500;">🇸🇦 العربية</a>
+                    <a href="privacy-policy-zh.html" style="color: #667eea; text-decoration: none; padding: 8px 16px; border: 1px solid #667eea; border-radius: 8px; font-weight: 500;">🇨🇳 中文</a>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p><strong>Last Updated:</strong> January 2025</p>
+                <p>© 2025 Mohammad Nasser Haji Hashemabad. All rights reserved.</p>
+            </div>
+            
+            <button class="back-btn" id="backBtn">⟵ Back</button>
+        </div>
+    </div>
+    <script src="js/privacy-policy.js"></script>
+</body>
+</html> 

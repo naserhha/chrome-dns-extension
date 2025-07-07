@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>License – DNS Extension</title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', 'Vazirmatn', 'Noto Sans', Arial, sans-serif;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f0fdfa 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .license-container {
+      background: rgba(255,255,255,0.7);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      backdrop-filter: blur(12px);
+      padding: 36px 28px 28px 28px;
+      max-width: 480px;
+      width: 100%;
+      margin: 32px 8px;
+      color: #222;
+      position: relative;
+      border: 1.5px solid rgba(120,120,255,0.13);
+    }
+    .license-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .license-section {
+      margin-bottom: 18px;
+    }
+    .license-section h2 {
+      font-size: 1.1rem;
+      margin: 0 0 6px 0;
+      font-weight: 600;
+      color: #3b82f6;
+      letter-spacing: 0.2px;
+    }
+    ul {
+      margin: 0 0 0 1.2em;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+    .author-info, .contact-info {
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+      color: #6366f1;
+    }
+    .license-badge {
+      display: inline-block;
+      background: #f1f5f9;
+      color: #6366f1;
+      border-radius: 8px;
+      padding: 2px 10px;
+      font-size: 0.95em;
+      margin-left: 8px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    .back-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: rgba(99,102,241,0.13);
+      color: #6366f1;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 16px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+    }
+    .back-btn:hover {
+      background: rgba(99,102,241,0.22);
+    }
+    @media (max-width: 600px) {
+      .license-container {
+        padding: 18px 4vw 18px 4vw;
+        max-width: 98vw;
+      }
+      .back-btn {
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="license-container">
+    <button class="back-btn" id="backBtn">⟵ Back</button>
+    <div class="license-title">⚖️ License <span class="license-badge">NonCommercial Attribution</span></div>
+    <div class="author-info"><b>Author:</b> Mohammad Nasser Haji Hashemabad</div>
+    <div class="license-section">
+      <h2>Allowed:</h2>
+      <ul>
+        <li>Use, study, and modify the code for personal and educational purposes</li>
+        <li>Share the original or modified version, as long as attribution is preserved</li>
+      </ul>
+    </div>
+    <div class="license-section">
+      <h2>Not Allowed:</h2>
+      <ul>
+        <li>Sell, license, or monetize this project (in original or modified form)</li>
+        <li>Use in commercial software, SaaS products, paid extensions, or bundled services</li>
+      </ul>
+    </div>
+    <div class="license-section">
+      <h2>Attribution Required:</h2>
+      <ul>
+        <li>Retain the author's name: <b>Mohammad Nasser Haji Hashemabad</b></li>
+        <li>Website: <a href="https://mohammadnasser.com" target="_blank">mohammadnasser.com</a></li>
+        <li>Email: <a href="mailto:info@mohammadnasser.com">info@mohammadnasser.com</a></li>
+      </ul>
+    </div>
+    <div class="license-section">
+      <h2>Commercial Use:</h2>
+      <div style="font-size:0.98em; color:#555;">To use this project for commercial purposes or as part of a monetized system, you must obtain written permission from the author.</div>
+    </div>
+    <div class="contact-info">
+      <b>Contact:</b> <a href="https://mohammadnasser.com" target="_blank">mohammadnasser.com</a> &nbsp;|&nbsp; <a href="mailto:info@mohammadnasser.com">info@mohammadnasser.com</a>
+    </div>
+    <div style="font-size:0.93em; color:#888; margin-top:10px;">Based on Creative Commons BY-NC 4.0, customized for the projects of Mohammad Nasser Haji Hashemabad.</div>
+  </div>
+  <script src="js/license.js"></script>
+</body>
+</html> 

@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="zh" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>隐私政策 - DNS 配置管理器</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', 'PingFang SC', 'Helvetica Neue', 'Arial', sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 20px;
+        }
+        
+        .content {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .header h1 {
+            font-size: 2.5rem;
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .header .subtitle {
+            font-size: 1.2rem;
+            color: #666;
+            font-weight: 400;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section h2 {
+            font-size: 1.5rem;
+            color: #764ba2;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+        
+        .section p {
+            margin-bottom: 15px;
+            font-size: 1rem;
+            color: #555;
+        }
+        
+        .highlight {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+        }
+        
+        .highlight h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+        
+        .contact {
+            background: #f8f9fa;
+            border-radius: 12px;
+            padding: 25px;
+            margin-top: 30px;
+            text-align: center;
+        }
+        
+        .contact h3 {
+            color: #667eea;
+            margin-bottom: 15px;
+        }
+        
+        .contact a {
+            color: #667eea;
+            text-decoration: none;
+            font-weight: 500;
+        }
+        
+        .contact a:hover {
+            text-decoration: underline;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-top: 10px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .language-links a {
+            transition: all 0.3s ease;
+        }
+        
+        .language-links a:hover {
+            background: #667eea !important;
+            color: white !important;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+        }
+        
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px 15px;
+            }
+            
+            .content {
+                padding: 25px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+            
+            .language-links div {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="header">
+                <h1>🔒 隐私政策</h1>
+                <div class="subtitle">DNS 配置管理器扩展</div>
+            </div>
+            
+            <div class="section">
+                <h2>📋 概述</h2>
+                <p>本隐私政策描述了 DNS 配置管理器 Chrome 扩展（"我们"、"我们的"或"我们"）如何处理您的信息。我们致力于保护您的隐私并确保我们数据实践的透明度。</p>
+            </div>
+            
+            <div class="highlight">
+                <h3>🛡️ 关键隐私原则</h3>
+                <p><strong>此扩展不收集、存储或传输任何用户数据。</strong>所有操作都在您的浏览器中本地进行。我们相信完全透明和最少的数据收集。</p>
+            </div>
+            
+            <div class="section">
+                <h2>📊 数据收集</h2>
+                <p><strong>我们不收集任何个人信息。</strong>我们的扩展完全在您的浏览器内运行，不会：</p>
+                <ul>
+                    <li>收集任何个人数据</li>
+                    <li>在外部服务器上存储信息</li>
+                    <li>跟踪您的浏览活动</li>
+                    <li>向第三方服务发送数据</li>
+                    <li>使用分析或跟踪工具</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>💾 本地存储</h2>
+                <p>唯一存储的数据是您的 DNS 配置偏好，这些偏好使用 Chrome 的存储 API 本地保存在您的浏览器中。这包括：</p>
+                <ul>
+                    <li>您的自定义 DNS 服务器设置</li>
+                    <li>语言偏好</li>
+                    <li>扩展状态（启用/禁用）</li>
+                </ul>
+                <p>这些数据保留在您的设备上，永远不会传输到外部服务器。</p>
+            </div>
+            
+            <div class="section">
+                <h2>🌐 网络通信</h2>
+                <p><strong>无外部网络请求：</strong>我们的扩展不进行任何 API 调用、fetch 请求或与外部服务器通信。所有功能都在您的浏览器内本地运行。</p>
+            </div>
+            
+            <div class="section">
+                <h2>🔐 权限</h2>
+                <p>我们的扩展需要最少的权限：</p>
+                <ul>
+                    <li><strong>proxy：</strong>配置 DNS 设置</li>
+                    <li><strong>storage：</strong>本地保存您的偏好</li>
+                    <li><strong>http://*/* 和 https://*/*：</strong>访问网站（DNS 功能的标准）</li>
+                </ul>
+                <p>我们不请求不必要的权限，如访问标签页、书签或浏览历史记录。</p>
+            </div>
+            
+            <div class="section">
+                <h2>🔍 代码透明度</h2>
+                <p>我们的扩展代码：</p>
+                <ul>
+                    <li>完全可读且未压缩</li>
+                    <li>开源且透明</li>
+                    <li>无混淆或加密</li>
+                    <li>可供公众审查</li>
+                </ul>
+            </div>
+            
+            <div class="section">
+                <h2>🔄 更新</h2>
+                <p>本隐私政策可能会偶尔更新。任何重要变更都将通过扩展的更新过程进行沟通。在变更后继续使用扩展即表示接受更新后的政策。</p>
+            </div>
+            
+            <div class="contact">
+                <h3>📧 联系信息</h3>
+                <p>如果您对本隐私政策或我们的数据实践有任何疑问，请联系我们：</p>
+                <p><strong>开发者：</strong>穆罕默德·纳赛尔·哈吉·哈希姆阿巴德</p>
+                <p><strong>网站：</strong> <a href="https://mohammadnasser.com" target="_blank">https://mohammadnasser.com</a></p>
+                <p><strong>电子邮件：</strong> <a href="mailto:info@mohammadnasser.com">info@mohammadnasser.com</a></p>
+            </div>
+            
+            <div class="language-links" style="text-align: center; margin: 30px 0; padding: 20px; background: rgba(102, 126, 234, 0.1); border-radius: 12px;">
+                <h3 style="color: #667eea; margin-bottom: 15px;">🌐 查看其他语言版本</h3>
+                <div style="display: flex; justify-content: center; gap: 15px; flex-wrap: wrap;">
+                    <a href="privacy-policy.html" style="color: #667eea; text-decoration: none; padding: 8px 16px; border: 1px solid #667eea; border-radius: 8px; font-weight: 500;">🇺🇸 English</a>
+                    <a href="privacy-policy-fa.html" style="color: #667eea; text-decoration: none; padding: 8px 16px; border: 1px solid #667eea; border-radius: 8px; font-weight: 500;">🇮🇷 فارسی</a>
+                    <a href="privacy-policy-ar.html" style="color: #667eea; text-decoration: none; padding: 8px 16px; border: 1px solid #667eea; border-radius: 8px; font-weight: 500;">🇸🇦 العربية</a>
+                    <a href="privacy-policy-zh.html" style="color: #667eea; text-decoration: none; padding: 8px 16px; border: 1px solid #667eea; border-radius: 8px; font-weight: 500; background: white;">🇨🇳 中文</a>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p><strong>最后更新：</strong>2025年1月</p>
+                <p>© 2025 穆罕默德·纳赛尔·哈吉·哈希姆阿巴德。保留所有权利。</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html> 

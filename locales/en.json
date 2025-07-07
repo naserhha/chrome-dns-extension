@@ -1,0 +1,157 @@
+{
+  "extension": {
+    "name": "DNS Configuration Manager",
+    "description": "Smart DNS settings for Chrome browser"
+  },
+  "popup": {
+    "title": "DNS Settings",
+    "dnsToggle": {
+      "enabled": "DNS ON",
+      "disabled": "DNS OFF"
+    },
+    "openInTab": "Open in new tab",
+    "status": {
+      "default": "Default DNS",
+      "connected": "Connected DNS:",
+      "noConnection": "No DNS connected",
+      "disabled": "DNS disabled"
+    }
+
+  },
+  "dns": {
+    "presets": {
+      "title": "Ready DNS",
+      "google": {
+        "name": "Google DNS",
+        "servers": "8.8.8.8, 8.8.4.4"
+      },
+      "cloudflare": {
+        "name": "Cloudflare",
+        "servers": "1.1.1.1, 1.0.0.1"
+      },
+      "opendns": {
+        "name": "Open DNS",
+        "servers": "208.67.222.222, 208.67.220.220"
+      },
+      "quad9": {
+        "name": "Quad 9",
+        "servers": "9.9.9.9, 149.112.112.112"
+      }
+    },
+    "custom": {
+      "title": "Custom DNS Settings",
+      "primary": "Primary DNS Server:",
+      "secondary": "Secondary DNS Server:",
+      "name": "Settings Name:",
+      "primaryPlaceholder": "Example: 8.8.8.8",
+      "secondaryPlaceholder": "Example: 8.8.4.4",
+      "namePlaceholder": "My Custom DNS",
+      "saveButton": "Save Custom DNS",
+      "updateButton": "Update DNS",
+      "cancelButton": "Cancel",
+      "customLabel": "Custom"
+    },
+    "saved": {
+      "title": "Saved Settings",
+      "noSettings": "No settings saved",
+      "apply": "Apply",
+      "delete": "Delete"
+    },
+    "actions": {
+      "apply": "Apply DNS",
+      "reset": "Reset to Default"
+    },
+    "copyLabel": "Click to instantly copy these DNS addresses!"
+  },
+  "notifications": {
+    "errors": {
+      "primaryRequired": "Please enter primary DNS server and settings name",
+      "invalidIP": "Please enter valid IP addresses",
+      "noConfig": "Please select a DNS configuration first",
+      "noSettings": "No DNS settings available for activation. Please select a DNS first."
+    },
+    "success": {
+      "customSaved": "Custom DNS settings saved successfully!",
+      "dnsApplied": "DNS settings applied",
+              "settingsDeleted": "Settings deleted successfully",
+                "editCancelled": "Edit mode cancelled",
+        "resetDefault": "Reset to default DNS settings"
+    }
+  },
+  "info": {
+    "note": "Note: This extension uses Chrome's proxy API to simulate DNS configuration. The changes apply to all browser traffic within Chrome, not the entire system."
+  },
+  "links": {
+    "home": "Home",
+    "about": "About Developer",
+    "github": "GitHub",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "license": "License",
+    "contributing": "Contributing",
+    "security": "Security & Privacy"
+  },
+  "dohGuide": {
+    "title": "How to Enable DNS over HTTPS (DoH) in Chrome",
+    "intro": "Follow these steps to enable secure DNS (DoH) in your Chrome browser:",
+    "step1": "1. Open Chrome settings.",
+    "step2": "2. Search for 'security' in the settings search bar.",
+    "step3": "3. Scroll down to the 'Advanced' section and find 'Use secure DNS'.",
+    "step4": "4. Enable 'Use secure DNS' and select 'With custom provider'.",
+    "step5": "5. Enter your preferred DoH provider URL (e.g., https://dns.google/dns-query).",
+    "done": "You have successfully enabled DNS over HTTPS!"
+  },
+  "enableDoh": {
+    "title": "How to Enable DNS over HTTPS (DoH) in Chrome",
+    "intro": "Follow these steps to enable secure DNS (DoH) in your Chrome browser:",
+    "step1": "1. Open Chrome settings.",
+    "step2": "2. Search for 'security' in the settings search bar.",
+    "step3": "3. Scroll down to the 'Advanced' section and find 'Use secure DNS'.",
+    "step4": "4. Enable 'Use secure DNS' and select 'With custom provider'.",
+    "step5": "5. Enter your preferred DoH provider URL (e.g., https://dns.google/dns-query).",
+    "done": "You have successfully enabled DNS over HTTPS!"
+  },
+  "common": {
+    "current_dns": "Current DNS",
+    "select_dns": "Select DNS",
+    "custom_dns": "Custom DNS",
+    "add_custom_dns": "Add Custom DNS",
+    "save": "Save",
+    "cancel": "Cancel",
+    "copy_dns": "Copy DNS",
+    "copied": "Copied!",
+    "simulated_dns_warning": "Note: Chrome extensions cannot change DNS directly. Please set DNS manually or use DoH.",
+    "language": "Language",
+    "select_language": "Select Language",
+    "remove": "Remove",
+    "edit": "Edit",
+    "confirm": "Confirm",
+    "reset": "Reset",
+    "error_invalid_dns": "Invalid DNS address.",
+    "error_empty_field": "This field cannot be empty.",
+    "success_saved": "Settings saved successfully."
+  },
+  "dohPoll": {
+    "q1": "Did you know you can change Chrome's DNS for more privacy?",
+    "yes": "Yes, show me the guide!",
+    "no": "No, tell me more",
+    "q2": "Would you like to see a step-by-step DoH activation guide?",
+    "showGuide": "Show Guide",
+    "openSettings": "Open Chrome Security Settings",
+    "notifyTitle": "Why enable DoH?",
+    "notifyBody": "Enabling DNS over HTTPS increases your privacy and security. Click for more info.",
+    "steps": [
+      "Go to <a href=\"chrome://settings/security\" target=\"_blank\">Chrome Security Settings</a>.",
+      "In the <b>Advanced</b> section, find <b>Use secure DNS</b>.",
+      "Enable <b>Use secure DNS</b>.",
+      "In <b>Custom provider</b>, enter one of the following URLs:<br><code>https://dns.google/dns-query</code><br><code>https://cloudflare-dns.com/dns-query</code>",
+      "Save settings and restart Chrome."
+    ],
+    "note": "This only changes DNS for Chrome, not your whole system."
+  },
+  "copy_dns_btn": "Copy DNS",
+  "dns_copied": "DNS copied! You can set it manually.",
+  "chromeSettings": {
+    "copyButton": "Copy Chrome Security Settings Address"
+  }
+} 

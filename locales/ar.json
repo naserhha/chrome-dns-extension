@@ -1,0 +1,157 @@
+{
+  "extension": {
+    "name": "مدير إعدادات DNS",
+    "description": "إعدادات DNS ذكية لمتصفح Chrome"
+  },
+  "popup": {
+    "title": "إعدادات DNS",
+    "dnsToggle": {
+      "enabled": "DNS مفتوح",
+      "disabled": "DNS مغلق"
+    },
+    "openInTab": "فتح في تب جديد",
+    "status": {
+      "default": "DNS افتراضي",
+      "connected": "DNS متصل:",
+      "noConnection": "لا يوجد DNS متصل",
+      "disabled": "DNS معطل"
+    }
+
+  },
+  "dns": {
+    "presets": {
+      "title": "DNS جاهز",
+      "google": {
+        "name": "Google DNS",
+        "servers": "8.8.8.8, 8.8.4.4"
+      },
+      "cloudflare": {
+        "name": "Cloudflare",
+        "servers": "1.1.1.1, 1.0.0.1"
+      },
+      "opendns": {
+        "name": "Open DNS",
+        "servers": "208.67.222.222, 208.67.220.220"
+      },
+      "quad9": {
+        "name": "Quad 9",
+        "servers": "9.9.9.9, 149.112.112.112"
+      }
+    },
+    "custom": {
+      "title": "إعدادات DNS مخصصة",
+      "primary": "خادم DNS الأساسي:",
+      "secondary": "خادم DNS الثانوي:",
+      "name": "اسم الإعدادات:",
+      "primaryPlaceholder": "مثال: 8.8.8.8",
+      "secondaryPlaceholder": "مثال: 8.8.4.4",
+      "namePlaceholder": "DNS مخصص",
+      "saveButton": "حفظ DNS مخصص",
+      "updateButton": "تحديث DNS",
+      "cancelButton": "إلغاء",
+      "customLabel": "مخصص"
+    },
+    "saved": {
+      "title": "الإعدادات المحفوظة",
+      "noSettings": "لا توجد إعدادات محفوظة",
+      "apply": "تطبيق",
+      "delete": "حذف"
+    },
+    "actions": {
+      "apply": "تطبيق DNS",
+      "reset": "إعادة تعيين إلى الافتراضي"
+    },
+    "copyLabel": "انقر لنسخ عناوين DNS فوراً!"
+  },
+  "notifications": {
+    "errors": {
+      "primaryRequired": "يرجى إدخال خادم DNS الأساسي واسم الإعدادات",
+      "invalidIP": "يرجى إدخال عناوين IP صحيحة",
+      "noConfig": "يرجى اختيار إعدادات DNS أولاً",
+      "noSettings": "لا توجد إعدادات DNS متاحة للتفعيل. يرجى اختيار DNS أولاً."
+    },
+    "success": {
+      "customSaved": "تم حفظ إعدادات DNS المخصصة بنجاح!",
+      "dnsApplied": "تم تطبيق إعدادات DNS",
+        "settingsDeleted": "تم حذف الإعدادات بنجاح",
+        "editCancelled": "تم إلغاء وضع التحرير",
+      "resetDefault": "تم إعادة تعيين إعدادات DNS الافتراضية"
+    }
+  },
+  "info": {
+    "note": "ملاحظة: يستخدم هذا الإضافة واجهة برمجة التطبيقات الوكيل في Chrome لمحاكاة تكوين DNS. التغييرات تنطبق على جميع حركة المرور في المتصفح داخل Chrome، وليس النظام بأكمله."
+  },
+  "links": {
+    "home": "الرئيسية",
+    "about": "حول المطور",
+    "github": "GitHub",
+    "privacy": "سياسة الخصوصية",
+    "terms": "شروط الخدمة",
+    "license": "الترخيص",
+    "contributing": "المساهمة",
+    "security": "الأمان والخصوصية"
+  },
+  "dohPoll": {
+    "q1": "هل كنت تعلم أنه يمكنك تغيير DNS في متصفح كروم لزيادة الخصوصية؟",
+    "yes": "نعم، أرني كيف!",
+    "no": "لا، أريد معرفة المزيد",
+    "q2": "هل ترغب في رؤية دليل خطوة بخطوة لتفعيل DoH؟",
+    "showGuide": "عرض الدليل",
+    "openSettings": "افتح إعدادات أمان كروم",
+    "notifyTitle": "لماذا تفعيل DoH؟",
+    "notifyBody": "تفعيل DNS over HTTPS يزيد من خصوصيتك وأمانك. انقر لمعرفة المزيد.",
+    "steps": [
+      "اذهب إلى <a href=\"chrome://settings/security\" target=\"_blank\">إعدادات أمان كروم</a>.",
+      "في قسم <b>المتقدم</b>، ابحث عن <b>استخدام DNS آمن</b>.",
+      "فعّل خيار <b>استخدام DNS آمن</b>.",
+      "في <b>مزود مخصص</b>، أدخل أحد العناوين التالية:<br><code>https://dns.google/dns-query</code><br><code>https://cloudflare-dns.com/dns-query</code>",
+      "احفظ الإعدادات وأعد تشغيل كروم."
+    ],
+    "note": "بهذه الطريقة، سيتغير DNS في كروم فقط وليس في النظام بأكمله."
+  },
+  "dohGuide": {
+    "title": "كيفية تفعيل DNS عبر HTTPS (DoH) في كروم",
+    "intro": "اتبع هذه الخطوات لتفعيل DNS الآمن (DoH) في متصفح كروم:",
+    "step1": "١. افتح إعدادات كروم.",
+    "step2": "٢. ابحث عن 'الأمان' في شريط بحث الإعدادات.",
+    "step3": "٣. انتقل إلى قسم 'متقدم' وابحث عن 'استخدام DNS آمن'.",
+    "step4": "٤. فعّل خيار 'استخدام DNS آمن' واختر 'مع مزود مخصص'.",
+    "step5": "٥. أدخل عنوان مزود DoH المفضل لديك (مثال: https://dns.google/dns-query).",
+    "done": "لقد قمت بتفعيل DNS عبر HTTPS بنجاح!"
+  },
+  "enableDoh": {
+    "title": "كيفية تفعيل DNS عبر HTTPS (DoH) في كروم",
+    "intro": "اتبع هذه الخطوات لتفعيل DNS الآمن (DoH) في متصفح كروم:",
+    "step1": "١. افتح إعدادات كروم.",
+    "step2": "٢. ابحث عن 'الأمان' في شريط بحث الإعدادات.",
+    "step3": "٣. انتقل إلى قسم 'متقدم' وابحث عن 'استخدام DNS آمن'.",
+    "step4": "٤. فعّل خيار 'استخدام DNS آمن' واختر 'مع مزود مخصص'.",
+    "step5": "٥. أدخل عنوان مزود DoH المفضل لديك (مثال: https://dns.google/dns-query).",
+    "done": "لقد قمت بتفعيل DNS عبر HTTPS بنجاح!"
+  },
+  "common": {
+    "current_dns": "DNS الحالي",
+    "select_dns": "اختر DNS",
+    "custom_dns": "DNS مخصص",
+    "add_custom_dns": "إضافة DNS مخصص",
+    "save": "حفظ",
+    "cancel": "إلغاء",
+    "copy_dns": "نسخ DNS",
+    "copied": "تم النسخ!",
+    "simulated_dns_warning": "ملاحظة: لا يمكن لإضافات كروم تغيير DNS مباشرة. يرجى ضبط DNS يدويًا أو استخدام DoH.",
+    "language": "اللغة",
+    "select_language": "اختر اللغة",
+    "remove": "إزالة",
+    "edit": "تعديل",
+    "confirm": "تأكيد",
+    "reset": "إعادة تعيين",
+    "error_invalid_dns": "عنوان DNS غير صالح.",
+    "error_empty_field": "لا يمكن أن يكون هذا الحقل فارغًا.",
+    "success_saved": "تم حفظ الإعدادات بنجاح.",
+    "copy_dns_btn": "نسخ DNS",
+    "dns_copied": "تم نسخ DNS! يمكنك تعيينه يدويًا."
+  },
+  "chromeSettings": {
+    "copyButton": "نسخ عنوان إعدادات أمان كروم"
+  }
+} 

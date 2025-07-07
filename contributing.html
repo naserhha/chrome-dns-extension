@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>🤝 Contributing – DNS Extension</title>
+  <style>
+    body {
+      min-height: 100vh;
+      margin: 0;
+      font-family: 'Segoe UI', 'Vazirmatn', 'Noto Sans', Arial, sans-serif;
+      background: linear-gradient(135deg, #e0e7ff 0%, #f0fdfa 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .contrib-container {
+      background: rgba(255,255,255,0.7);
+      border-radius: 24px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      backdrop-filter: blur(12px);
+      padding: 36px 28px 28px 28px;
+      max-width: 600px;
+      width: 100%;
+      margin: 32px 8px;
+      color: #222;
+      position: relative;
+      border: 1.5px solid rgba(120,120,255,0.13);
+      overflow-y: auto;
+      max-height: 95vh;
+    }
+    .contrib-title {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 10px;
+      letter-spacing: 0.5px;
+      display: flex;
+      align-items: center;
+      gap: 0.5em;
+    }
+    .contrib-section {
+      margin-bottom: 18px;
+    }
+    .contrib-section h2 {
+      font-size: 1.1rem;
+      margin: 0 0 6px 0;
+      font-weight: 600;
+      color: #3b82f6;
+      letter-spacing: 0.2px;
+    }
+    ul, ol {
+      margin: 0 0 0 1.2em;
+      padding: 0;
+    }
+    li {
+      margin-bottom: 4px;
+      line-height: 1.6;
+    }
+    .lang-block {
+      margin-bottom: 22px;
+      padding-bottom: 10px;
+      border-bottom: 1px solid #e0e7ff;
+    }
+    .lang-block:last-child {
+      border-bottom: none;
+    }
+    .back-btn {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: rgba(99,102,241,0.13);
+      color: #6366f1;
+      border: none;
+      border-radius: 8px;
+      padding: 6px 16px;
+      font-size: 1em;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s;
+      box-shadow: 0 2px 8px rgba(99,102,241,0.07);
+    }
+    .back-btn:hover {
+      background: rgba(99,102,241,0.22);
+    }
+    .contact-info {
+      font-size: 0.98rem;
+      margin-bottom: 8px;
+      color: #6366f1;
+    }
+    .contrib-badge {
+      display: inline-block;
+      background: #f1f5f9;
+      color: #6366f1;
+      border-radius: 8px;
+      padding: 2px 10px;
+      font-size: 0.95em;
+      margin-left: 8px;
+      font-weight: 600;
+      letter-spacing: 0.2px;
+    }
+    @media (max-width: 700px) {
+      .contrib-container {
+        padding: 18px 4vw 18px 4vw;
+        max-width: 98vw;
+      }
+      .back-btn {
+        top: 10px;
+        right: 10px;
+        padding: 5px 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="contrib-container">
+    <button class="back-btn" id="backBtn">⟵ Back</button>
+    <div class="contrib-title">🤝 Contributing <span class="contrib-badge">Get Involved!</span></div>
+    <div class="lang-block">
+      <h2>🇺🇸 English</h2>
+      <ul>
+        <li>Report bugs in Issues</li>
+        <li>Suggest new features</li>
+        <li>Submit code following standards</li>
+      </ul>
+      <div class="contrib-section">
+        <h2>How to Contribute</h2>
+        <ol>
+          <li>Fork and clone the repo</li>
+          <li>Create a new branch</li>
+          <li>Make and test changes</li>
+          <li>Submit a Pull Request with details</li>
+        </ol>
+      </div>
+      <div class="contrib-section">
+        <h2>Contact</h2>
+        <div class="contact-info">Open an Issue or email <a href="mailto:info@mohammadnasser.com">info@mohammadnasser.com</a></div>
+      </div>
+    </div>
+    <div class="lang-block" dir="rtl">
+      <h2>🇮🇷 فارسی</h2>
+      <ul>
+        <li>باگ‌ها را در Issues گزارش کنید.</li>
+        <li>ویژگی‌های جدید را پیشنهاد دهید.</li>
+        <li>کد خود را با رعایت استانداردها ارسال کنید.</li>
+      </ul>
+      <div class="contrib-section">
+        <h2>چگونه مشارکت کنیم؟</h2>
+        <ol>
+          <li>Fork و Clone پروژه</li>
+          <li>شاخه جدید بسازید</li>
+          <li>تغییرات را اعمال و تست کنید</li>
+          <li>Pull Request با توضیح کامل ارسال کنید</li>
+        </ol>
+      </div>
+      <div class="contrib-section">
+        <h2>تماس</h2>
+        <div class="contact-info">Issue باز کنید یا به <a href="mailto:info@mohammadnasser.com">info@mohammadnasser.com</a> ایمیل بزنید</div>
+      </div>
+    </div>
+    <div class="lang-block" dir="rtl">
+      <h2>🇸🇦 العربية</h2>
+      <ul>
+        <li>أبلغ عن الأخطاء في Issues</li>
+        <li>اقترح ميزات جديدة</li>
+        <li>أرسل الكود وفقًا للمعايير</li>
+      </ul>
+      <div class="contrib-section">
+        <h2>كيفية المساهمة</h2>
+        <ol>
+          <li>Fork و Clone للمستودع</li>
+          <li>أنشئ فرعًا جديدًا</li>
+          <li>أجرِ التغييرات واختبرها</li>
+          <li>أرسل Pull Request مع التفاصيل</li>
+        </ol>
+      </div>
+      <div class="contrib-section">
+        <h2>التواصل</h2>
+        <div class="contact-info">افتح Issue أو راسل <a href="mailto:info@mohammadnasser.com">info@mohammadnasser.com</a></div>
+      </div>
+    </div>
+    <div class="lang-block">
+      <h2>🇨🇳 中文</h2>
+      <ul>
+        <li>在 Issues 中报告错误</li>
+        <li>建议新功能</li>
+        <li>按标准提交代码</li>
+      </ul>
+      <div class="contrib-section">
+        <h2>如何贡献</h2>
+        <ol>
+          <li>Fork 并克隆仓库</li>
+          <li>创建新分支</li>
+          <li>修改并测试</li>
+          <li>提交详细 Pull Request</li>
+        </ol>
+      </div>
+      <div class="contrib-section">
+        <h2>联系方式</h2>
+        <div class="contact-info">提 Issue 或发送邮件至 <a href="mailto:info@mohammadnasser.com">info@mohammadnasser.com</a></div>
+      </div>
+    </div>
+    <div class="contrib-section">
+      <h2>🌟 Coding Standards & Guidelines</h2>
+      <ul>
+        <li>Use ES6+ and async/await</li>
+        <li>Meaningful naming and comments</li>
+        <li>Accessibility & responsive design</li>
+        <li>Test thoroughly before submitting</li>
+        <li>See <a href="SECURITY.md" target="_blank">SECURITY.md</a> for privacy & security</li>
+      </ul>
+    </div>
+    <div class="contrib-section">
+      <h2>📞 More Info</h2>
+      <div class="contact-info">
+        <b>Author:</b> Mohammad Nasser Haji Hashemabad<br>
+        <a href="https://github.com/nasserhaji" target="_blank">GitHub</a> |
+        <a href="https://mohammadnasser.com" target="_blank">Website</a>
+      </div>
+    </div>
+    <div style="font-size:0.93em; color:#888; margin-top:10px;">Thank you for contributing to DNS Configuration Manager! 🌟</div>
+  </div>
+  <script src="js/contributing.js"></script>
+</body>
+</html> 

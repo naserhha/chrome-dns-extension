@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<!--
+ * DNS Configuration Manager - Popup HTML
+ * 
+ * 🔒 Custom License – NonCommercial Attribution by Mohammad Nasser Haji Hashemabad
+ * Copyright (c) 2025 Mohammad Nasser Haji Hashemabad
+ * 
+ * This source code is provided for personal, educational, and non-commercial use only.
+ * You are allowed to use, study, and modify the code for personal and educational purposes.
+ * You are NOT allowed to sell, license, or monetize this project.
+ * 
+ * Attribution required: Mohammad Nasser Haji Hashemabad
+ * Website: https://mohammadnasser.com
+ * Email: info@mohammadnasser.com
+ * 
+ * For commercial licensing, contact: info@mohammadnasser.com
+ * 
+ * Author: Mohammad Nasser Haji Hashemabad
+ -->
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DNS Settings</title>
+    <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+    <div class="container">
+        <!-- Language Selector -->
+        <div class="language-selector">
+            <div class="language-header">
+                <div class="language-title">
+                    <span class="title-icon">🌐</span>
+                    <span class="title-text">Language Selection</span>
+                </div>
+                <div class="language-subtitle">اختر اللغة / Select Language</div>
+            </div>
+            <div class="language-grid">
+                <button class="lang-btn active" data-lang="en">
+                    <div class="lang-icon">🇺🇸</div>
+                    <div class="lang-info">
+                        <div class="lang-name">English</div>
+                        <div class="lang-desc">English Language</div>
+                    </div>
+                    <div class="lang-check">
+                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    </div>
+                </button>
+                
+                <button class="lang-btn" data-lang="fa">
+                    <div class="lang-icon">🇮🇷</div>
+                    <div class="lang-info">
+                        <div class="lang-name">فارسی</div>
+                        <div class="lang-desc">Persian Language</div>
+                    </div>
+                    <div class="lang-check">
+                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    </div>
+                </button>
+
+                <button class="lang-btn" data-lang="ar">
+                    <div class="lang-icon">🇸🇦</div>
+                    <div class="lang-info">
+                        <div class="lang-name">العربية</div>
+                        <div class="lang-desc">Arabic Language</div>
+                    </div>
+                    <div class="lang-check">
+                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    </div>
+                </button>
+
+                <button class="lang-btn" data-lang="zh">
+                    <div class="lang-icon">🇨🇳</div>
+                    <div class="lang-info">
+                        <div class="lang-name">中文</div>
+                        <div class="lang-desc">Chinese Language</div>
+                    </div>
+                    <div class="lang-check">
+                        <svg class="check-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M20 6L9 17l-5-5"/>
+                        </svg>
+                    </div>
+                </button>
+            </div>
+        </div>
+
+        <button id="openInTab" class="btn btn-primary">Open in new tab</button>
+        
+        <div id="doh-poll-guide" class="doh-poll-guide"></div>
+        
+        <header>
+            <h1>DNS Settings</h1>
+            <div class="status-indicator" id="statusIndicator">
+                <span class="status-dot"></span>
+                <span class="status-text">Default DNS</span>
+            </div>
+        </header>
+
+        <div class="current-dns-bar">
+            <span class="current-dns-title">Connected DNS:</span>
+            <span id="currentDnsValue" class="current-dns-value">—</span>
+        </div>
+
+        <div class="dns-presets">
+            <h3>Ready DNS</h3>
+            <div class="preset-grid" id="readyDnsGrid">
+                <!-- Ready DNS presets will be rendered dynamically here -->
+            </div>
+        </div>
+
+        <div class="custom-dns">
+            <h3>Custom DNS Settings</h3>
+            <div class="input-group">
+                <label for="primaryDNS">Primary DNS Server:</label>
+                <input type="text" id="primaryDNS" placeholder="Example: 8.8.8.8" pattern="^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$">
+            </div>
+            <div class="input-group">
+                <label for="secondaryDNS">Secondary DNS Server:</label>
+                <input type="text" id="secondaryDNS" placeholder="Example: 8.8.4.4" pattern="^(?:[0-9]{1,3}\.){3}[0-9]{1,3}$">
+            </div>
+            <div class="input-group">
+                <label for="dnsName">Settings Name:</label>
+                <input type="text" id="dnsName" placeholder="My Custom DNS">
+            </div>
+            <div class="custom-dns-buttons">
+            <button id="saveCustom" class="btn btn-primary">Save Custom DNS</button>
+                <button id="cancelEdit" class="btn btn-secondary" style="display: none;" data-i18n="dns.custom.cancelButton">Cancel</button>
+            </div>
+        </div>
+
+        <div class="saved-configs">
+            <h3>Saved Settings</h3>
+            <div id="savedConfigsList" class="saved-configs-list">
+                <!-- Saved configurations will be loaded here -->
+            </div>
+        </div>
+
+        <div class="actions">
+            <button id="applyDNS" class="btn btn-success">Apply DNS</button>
+            <button id="resetDNS" class="btn btn-danger">Reset to Default</button>
+            <button id="copyDNS" class="btn btn-info">📋 Copy DNS</button>
+            <button id="refreshDNS" class="btn btn-info">🔄 Refresh Status</button>
+            <button id="testDNS" class="btn btn-warning">🔍 Test DNS</button>
+            <button id="checkDNS" class="btn btn-secondary">🔗 Check DNS</button>
+            <button id="testRealDNS" class="btn btn-primary">🌐 Test Real DNS</button>
+        </div>
+
+        <div class="chrome-settings-btn-bar">
+            <button id="openChromeSettings" class="btn btn-chrome-settings" data-i18n="chromeSettings.copyButton">کپی آدرس تنظیمات امنیتی کروم</button>
+        </div>
+
+        <div class="info">
+            <p><strong>Note: This extension simulates DNS configuration using Chrome's proxy API. For actual DNS changes, please configure your system DNS settings manually.</strong></p>
+        </div>
+
+        <div class="links-bar">
+            <a href="index.html" target="_blank" class="btn btn-link" id="homeLink">
+                <span>🏠</span>
+                <span>Home</span>
+            </a>
+            <a href="https://mohammadnasser.com" target="_blank" class="btn btn-link">
+                <span>🌐</span>
+                <span>About Developer</span>
+            </a>
+            <a href="https://github.com/nasserhaji/chrome-dns-extension" target="_blank" class="btn btn-link">
+                <span>🐙</span>
+                <span>GitHub</span>
+            </a>
+            <a href="privacy-policy.html" target="_blank" class="btn btn-link" id="privacyPolicyLink">
+                <span>🔒</span>
+                <span>Privacy Policy</span>
+            </a>
+            <a href="terms-of-service.html" target="_blank" class="btn btn-link" id="termsOfServiceLink">
+                <span>📋</span>
+                <span>Terms of Service</span>
+            </a>
+            <a href="license.html" target="_blank" class="btn btn-link" id="licenseLink">
+                <span>⚖️</span>
+                <span>License</span>
+            </a>
+            <a href="contributing.html" target="_blank" class="btn btn-link" id="contributingLink">
+                <span>🤝</span>
+                <span>Contributing</span>
+            </a>
+            <a href="security.html" target="_blank" class="btn btn-link" id="securityLink">
+                <span>🔒</span>
+                <span>Security & Privacy</span>
+            </a>
+        </div>
+    </div>
+    
+    <script src="js/i18n.js"></script>
+    <script src="popup.js"></script>
+</body>
+</html> 
