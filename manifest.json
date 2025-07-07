@@ -8,17 +8,14 @@
   "permissions": [
     "proxy",
     "storage",
-    "alarms"
+    "alarms",
+    "activeTab"
   ],
   "web_accessible_resources": [
     {
       "resources": ["locales/*.json", "privacy-policy.html", "privacy-policy-fa.html", "privacy-policy-ar.html", "privacy-policy-zh.html", "terms-of-service.html", "terms-of-service-fa.html", "terms-of-service-ar.html", "terms-of-service-zh.html"],
       "matches": ["<all_urls>"]
     }
-  ],
-  "host_permissions": [
-    "http://*/*",
-    "https://*/*"
   ],
   "background": {
     "service_worker": "background.js"
@@ -35,4 +32,4 @@
   "content_security_policy": {
     "extension_pages": "script-src 'self'; object-src 'self'"
   }
-} 
+}
