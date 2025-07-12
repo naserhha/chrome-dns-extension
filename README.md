@@ -12,7 +12,7 @@
 **Chrome 浏览器的智能 DNS 设置**  
 *开发者: 穆罕默德·纳赛尔·哈吉·哈希姆阿巴德*
 
-[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue?style=for-the-badge&logo=google-chrome)](https://chrome.google.com/webstore)
+[![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue?style=for-the-badge&logo=google-chrome)](https://chrome.google.com/webstore/detail/opoejijmagmdeeobilcpjnllpmoklnlk)
 [![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/nasserhaji/chrome-dns-extension)
 [![License](https://img.shields.io/badge/License-Custom%20BY--NC-red?style=for-the-badge)](LICENSE)
 
