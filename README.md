@@ -13,7 +13,7 @@
 *开发者: 穆罕默德·纳赛尔·哈吉·哈希姆阿巴德*
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome%20Web%20Store-Install-blue?style=for-the-badge&logo=google-chrome)](https://chrome.google.com/webstore/detail/opoejijmagmdeeobilcpjnllpmoklnlk)
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/nasserhaji/chrome-dns-extension)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/naserhha/chrome-dns-extension)
 [![License](https://img.shields.io/badge/License-Custom%20BY--NC-red?style=for-the-badge)](LICENSE)
 
 ## 📋 فهرست مطالب
@@ -210,7 +210,7 @@ The **Chrome DNS Extension** is a powerful and user-friendly tool for managing D
 
 1. **دانلود پروژه:**
    ```bash
-   git clone https://github.com/nasserhaji/chrome-dns-extension.git
+   git clone https://github.com/naserhha/chrome-dns-extension.git
    cd chrome-dns-extension
    ```
 
@@ -245,7 +245,7 @@ The **Chrome DNS Extension** is a powerful and user-friendly tool for managing D
 
 1. **Download Project:**
    ```bash
-   git clone https://github.com/nasserhaji/chrome-dns-extension.git
+   git clone https://github.com/naserhha/chrome-dns-extension.git
    cd chrome-dns-extension
    ```
 
@@ -280,7 +280,7 @@ The **Chrome DNS Extension** is a powerful and user-friendly tool for managing D
 
 1. **تحميل المشروع:**
    ```bash
-   git clone https://github.com/nasserhaji/chrome-dns-extension.git
+   git clone https://github.com/naserhha/chrome-dns-extension.git
    cd chrome-dns-extension
    ```
 
@@ -315,7 +315,7 @@ The **Chrome DNS Extension** is a powerful and user-friendly tool for managing D
 
 1. **下载项目：**
    ```bash
-   git clone https://github.com/nasserhaji/chrome-dns-extension.git
+   git clone https://github.com/naserhha/chrome-dns-extension.git
    cd chrome-dns-extension
    ```
 
@@ -1044,7 +1044,7 @@ This project is published under **Custom Non-Commercial Attribution License** by
 *توسعه‌دهنده نرم‌افزار و علاقه‌مند به تکنولوژی*
 
 - 🌐 [وب‌سایت شخصی](https://mohammadnasser.com)
-- 🐙 [پروفایل گیت‌هاب](https://github.com/nasserhaji)
+- 🐙 [پروفایل گیت‌هاب](https://github.com/naserhha)
 - 📧 [ایمیل](mailto:info@mohammadnasser.com)
 
 ## 🙏 تشکر و قدردانی
@@ -1057,6 +1057,6 @@ This project is published under **Custom Non-Commercial Attribution License** by
 
 **⭐ اگر این پروژه برایتان مفید بود، لطفاً آن را ستاره‌دار کنید!**
 
-[![GitHub stars](https://img.shields.io/github/stars/nasserhaji/chrome-dns-extension?style=social)](https://github.com/nasserhaji/chrome-dns-extension)
-[![GitHub forks](https://img.shields.io/github/forks/nasserhaji/chrome-dns-extension?style=social)](https://github.com/nasserhaji/chrome-dns-extension)
-[![GitHub issues](https://img.shields.io/github/issues/nasserhaji/chrome-dns-extension)](https://github.com/nasserhaji/chrome-dns-extension/issues) 
+[![GitHub stars](https://img.shields.io/github/stars/naserhha/chrome-dns-extension?style=social)](https://github.com/naserhha/chrome-dns-extension)
+[![GitHub forks](https://img.shields.io/github/forks/naserhha/chrome-dns-extension?style=social)](https://github.com/naserhha/chrome-dns-extension)
+[![GitHub issues](https://img.shields.io/github/issues/naserhha/chrome-dns-extension)](https://github.com/naserhha/chrome-dns-extension/issues) 
